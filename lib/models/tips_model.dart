@@ -1,3 +1,5 @@
+import 'package:flutter_trabalho3_opta1/commons.dart';
+
 class TipsModel {
   int id;
   String title;
@@ -51,7 +53,15 @@ class TipsModel {
     return data;
   }
 
+  String toTitle() {
+    return title;
+  }
+
   String toSubtitle() {
-    return "    $description";
+    return '→ Usuario: User\n• ${AppLabels.type}: $type\n• ${AppLabels.language}: $language';
+  }
+
+  String toDescription() {
+    return '      $description';
   }
 }

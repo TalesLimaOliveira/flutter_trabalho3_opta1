@@ -38,7 +38,7 @@ class _TipsListState extends State<TipsList> {
         builder: (context, controller, child) {
           return Container(
             padding: const EdgeInsets.all(2.0),
-            margin: const EdgeInsets.all(8.0),
+            margin: const EdgeInsets.all(10.0),
             decoration: BoxDecoration(
               color: AppColors.containerBG,
               borderRadius: BorderRadius.circular(16),
@@ -52,39 +52,60 @@ class _TipsListState extends State<TipsList> {
                     itemCount: controller.tipsList.length,
                     itemBuilder: (context, index) {
                       final tipsList = controller.tipsList[index];
-
-//LIST                
-                      return ListTile(
-                        title: Text(tipsList.title),
-                        subtitle: Text(tipsList.toSubtitle()),
-  //LIST ICONS                          
-                        trailing: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-  //EDIT FROM LIST          
-                            IconButton(
-                              padding: EdgeInsets.zero,
-                              icon: const Icon(Icons.edit),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute( 
-                                    builder: (context) =>
-                                    TipsForm(existingTips: tipsList)
-                                  ),
-                                );
-                              },
+            
+            //LIST                
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ListTile(
+                            title: Text(tipsList.toTitle()),
+                            subtitle: Text(tipsList.toSubtitle(),),
+            //LIST ICONS                          
+                            trailing: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+            //EDIT FROM LIST          
+                                IconButton(
+                                  padding: EdgeInsets.zero,
+                                  icon: const Icon(Icons.edit),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute( 
+                                        builder: (context) =>
+                                        TipsForm(existingTips: tipsList)
+                                      ),
+                                    );
+                                  },
+                                ),
+            //DELETE FROM LIST
+                                IconButton(
+                                  icon: const Icon(Icons.delete),
+                                  padding: EdgeInsets.zero,
+                                  onPressed: () {
+                                    controller.deleteTips(context, tipsList.id);
+                                  },
+                                ),
+                              ],
                             ),
-  //DELETE FROM LIST
-                            IconButton(
-                              icon: const Icon(Icons.delete),
-                              padding: EdgeInsets.zero,
-                              onPressed: () {
-                                controller.deleteTips(context, tipsList.id);
-                              },
+                          ),
+            // DESCRIPTION             
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 5.0),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                tipsList.toDescription(),
+                                textAlign: TextAlign.justify,
+                                style:const TextStyle(
+                                  fontSize: 13.0,
+                                ),
+                              ),
                             ),
-                          ],
-                        ),
+                          ),
+            
+                          const Divider(color: AppColors.text),
+                        ],
                       );
                     },
                   ),

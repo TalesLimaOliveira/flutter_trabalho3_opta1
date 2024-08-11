@@ -50,9 +50,10 @@ class MyApp extends StatelessWidget {
           textColor: AppColors.text,
           titleTextStyle: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 16.0,
+            fontSize: 15.0,
           ),
           subtitleTextStyle: TextStyle(
+            fontStyle: FontStyle.italic,
             fontSize: 14.0,
           ),
         ),
