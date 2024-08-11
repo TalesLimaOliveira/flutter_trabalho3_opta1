@@ -18,6 +18,7 @@ class TipsFormState extends State<TipsForm> {
   final _titleController = TextEditingController();
   final _descriptionController = TextEditingController();
   String _type = AppLabels.typesList[0];
+  String _language = AppLabels.languagesList[0];
 
   @override
   void initState() {
@@ -26,6 +27,7 @@ class TipsFormState extends State<TipsForm> {
       _titleController.text = widget.existingTips!.title;
       _descriptionController.text = widget.existingTips!.description;
       _type = widget.existingTips!.type;
+      _language = widget.existingTips!.language;
     }
   }
 
@@ -56,16 +58,14 @@ class TipsFormState extends State<TipsForm> {
                 child: Form(
                   key: _formKey,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                  
 // LINE 1: Title
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: _formPadding),
                         child: createTextFormField(
                           label: AppLabels.title,
                           controller: _titleController,
-                          textInputType: TextInputType.name,
+                          textInputType: TextInputType.text,
                           validator: validateEmpty,
                         ),
                       ),
@@ -74,30 +74,60 @@ class TipsFormState extends State<TipsForm> {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: _formPadding),
                         child: createTextFormField(
-                          label: AppLabels.title,
-                          controller: _titleController,
-                          textInputType: TextInputType.name,
+                          label: AppLabels.description,
+                          controller: _descriptionController,
+                          textInputType: TextInputType.text,
+                          maxLines: 6,
                           validator: validateEmpty,
                         ),
                       ),
-                           
-// LINE 3: TYPE
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: _formPadding),
-                        child: createDropdownButtonFormField(
-                          value: _type,
-                          label: AppLabels.type,
-                          items: AppLabels.typesList,
-                          onChanged: (value) {
-                            setState(() {
-                              _type = value!;
-                            });
-                          },
-                        ),
-                      ),      
-                  
+
+// LINE 3: TYPE & LANGUAGE              
+                      Row(
+                        children: [
+
+// TYPE
+                          Flexible(
+                            flex: 3,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: _formPadding),
+                              child: createDropdownButtonFormField(
+                                value: _type,
+                                label: AppLabels.type,
+                                items: AppLabels.typesList,
+                                onChanged: (value) {
+                                  setState((){
+                                    _type = value!;
+                                  });
+                                },
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          
+// LANGUAGE
+                          Flexible(
+                            flex: 2,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: _formPadding),
+                              child: createDropdownButtonFormField(
+                                value: _language,
+                                label: AppLabels.language,
+                                items: AppLabels.languagesList,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _language = value!;
+                                  });
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
+                      ), 
+
+
 // SAVE BUTTON
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 40),
                       ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
@@ -105,17 +135,22 @@ class TipsFormState extends State<TipsForm> {
                               title: _titleController.text,
                               description: _descriptionController.text,
                               type: _type,
+                              language: _language,
                             );
+
                             if (widget.existingTips != null) {
                               newTips.id = widget.existingTips!.id;// Preserve ID for update
                               TipsDao.updateTipsStatic(
                                 context, newTips.id, newTips);
-                            } else {
+                            }
+                            
+                            else {
                               TipsDao.addTipsStatic(context, newTips);
                             }
                             Navigator.pop(context);
                           }
                         },
+
                         child: Text(
                           widget.existingTips == null
                             ? AppLabels.addTips

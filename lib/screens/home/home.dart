@@ -92,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: createTextFormField(
                                   label: AppLabels.email,
                                   controller: emailController,
-                                  textInputType: TextInputType.name,
+                                  textInputType: TextInputType.emailAddress,
                                   validator:  validateEmpty,
                                   icon: const Icon(Icons.mail_outline),
                               ),
@@ -103,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: createTextFormField(
                                 label: AppLabels.password,
                                 controller: passwordController,
-                                textInputType: TextInputType.name,
+                                textInputType: TextInputType.text,
                                 validator: validateEmpty,
                                 icon: const Icon(Icons.lock),
                                 obscureText: !showPassword,
@@ -117,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: createTextFormField(
                                     label: AppLabels.passwordConfirm,
                                     controller: passwordConfirmController,
-                                    textInputType: TextInputType.name,
+                                    textInputType: TextInputType.text,
                                     validator: validateEmpty,
                                     icon: const Icon(Icons.lock),
                                     obscureText: !showPassword,

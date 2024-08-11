@@ -29,18 +29,29 @@ class AppLabels {
   static const String toSingup = 'Não tem conta? Cadastre-se!';
   static const String toLogin = 'Já tem conta? Entre!';
 
-
   static const String addTips = 'Adicionar';
   static const String updateTips = 'Atualizar';
 
   static const String title = 'Título';
   static const String type = 'Categoria';
+  static const String language = 'Linguagem';
   static const String description = 'Descrição';
 
   static const List<String> typesList = [
-    'Dica Geral',
-    'Sobre Organização',
     'CleanCode / Refatoração',
+    'Sobre Organização',
     'Resolução de Problema',
+    'Dica Geral',
+  ];
+
+  static const List<String> languagesList = [
+    'C/C++',
+    'Julia',
+    'Python',
+    'Java',
+    'JavaScript',
+    'Dart',
+    'Go',
+    'Kotlin',
   ];
 }

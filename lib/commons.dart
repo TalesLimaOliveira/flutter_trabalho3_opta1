@@ -6,7 +6,7 @@ export 'package:shared_preferences/shared_preferences.dart';
 //components
 export 'components/style/labels.dart';
 export 'components/style/colors.dart';
-export 'components/style/textfields.dart';
+export 'components/widgets/textfields.dart';
 export 'components/widgets/snackbar.dart';
 
 //screen

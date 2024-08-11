@@ -37,12 +37,14 @@ Widget createTextFormField({
   TextInputType? textInputType,
   String? Function(String?)? validator,
   Icon? icon,
+  int maxLines = 1,
   bool obscureText = false,
 }) {
   return TextFormField(
     controller: controller,
     keyboardType: textInputType,
     validator: validator,
+    maxLines: maxLines,
 
     obscureText: obscureText,
     decoration: getInputDecoration(hint: label, icon: icon),
