@@ -1,8 +1,8 @@
 class AppLabels {
-  static const String appName = 'Aplicativo de Gastos';
-  static const String appBarList = 'Lista de Gastos';
+  static const String appName = 'Programmin Dicks\nDicas de Programação';
   static const String valueError = 'Insira um valor Valido';
 
+  static const String appBarList = 'Lista de Gastos';
   static const String appBarForm = 'Adicionar Gasto';
   static const String appBarEdit = 'Editar Gasto';
   static const String addExpense = 'Adicionar';
