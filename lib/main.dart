@@ -4,7 +4,7 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => ExpenseDao()),
+        ChangeNotifierProvider(create: (_) => TipsDao()),
       ],
       child: const MyApp(),
     ),

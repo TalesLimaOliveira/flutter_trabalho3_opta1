@@ -1,20 +1,20 @@
 import 'package:flutter_trabalho3_opta1/commons.dart';
 
 
-class ExpenseList extends StatefulWidget {
-  const ExpenseList({super.key});
+class TipsList extends StatefulWidget {
+  const TipsList({super.key});
 
   @override
-  State<ExpenseList> createState() => _ExpenseListState();
+  State<TipsList> createState() => _TipsListState();
 }
 
-class _ExpenseListState extends State<ExpenseList> {
+class _TipsListState extends State<TipsList> {
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<ExpenseDao>(context, listen: false).loadExpenses(context);
+      Provider.of<TipsDao>(context, listen: false).loadTipss(context);
     });
   }
 
@@ -25,10 +25,16 @@ class _ExpenseListState extends State<ExpenseList> {
       appBar: AppBar(
         title: const Text(AppLabels.appBarList),
         automaticallyImplyLeading: false,
+        actions: [IconButton(
+          icon: const Icon(Icons.logout),
+          onPressed: (){
+            Navigator.pop(context);
+          },
+        )],
       ),
 
 //SCREEN STYLE
-      body: Consumer<ExpenseDao>(
+      body: Consumer<TipsDao>(
         builder: (context, controller, child) {
           return Container(
             padding: const EdgeInsets.all(2.0),
@@ -43,14 +49,14 @@ class _ExpenseListState extends State<ExpenseList> {
               children: <Widget>[
                 Expanded(
                   child: ListView.builder(
-                    itemCount: controller.expenseList.length,
+                    itemCount: controller.tipsList.length,
                     itemBuilder: (context, index) {
-                      final expenseList = controller.expenseList[index];
+                      final tipsList = controller.tipsList[index];
 
 //LIST                
                       return ListTile(
-                        title: Text(expenseList.purpose),
-                        subtitle: Text(expenseList.toSubtitle()),
+                        title: Text(tipsList.title),
+                        subtitle: Text(tipsList.toSubtitle()),
   //LIST ICONS                          
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
@@ -64,7 +70,7 @@ class _ExpenseListState extends State<ExpenseList> {
                                   context,
                                   MaterialPageRoute( 
                                     builder: (context) =>
-                                    ExpenseForm(existingExpense: expenseList)
+                                    TipsForm(existingTips: tipsList)
                                   ),
                                 );
                               },
@@ -74,7 +80,7 @@ class _ExpenseListState extends State<ExpenseList> {
                               icon: const Icon(Icons.delete),
                               padding: EdgeInsets.zero,
                               onPressed: () {
-                                controller.deleteExpense(context, expenseList.id);
+                                controller.deleteTips(context, tipsList.id);
                               },
                             ),
                           ],
@@ -96,7 +102,7 @@ class _ExpenseListState extends State<ExpenseList> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const ExpenseForm()
+              builder: (context) => const TipsForm()
             ),
           );
         },

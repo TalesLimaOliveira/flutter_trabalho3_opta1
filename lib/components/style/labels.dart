@@ -1,19 +1,20 @@
 class AppLabels {
-  static const String appName = 'Programmin Dicks\nDicas de Programação';
-  static const String appBarList = 'Lista de Gastos';
-  static const String appBarForm = 'Adicionar Gasto';
-  static const String appBarEdit = 'Editar Gasto';
+  static const String appName = 'Programming Dicks';
+  static const String appSubName = 'Dicas de Programação';
+  static const String appBarList = 'Lista de Dicas';
+  static const String appBarAdd = 'Adicionar Dica';
+  static const String appBarEdit = 'Editar Dica';
 
   static const String valueError = 'Insira um valor valido';
-  static const String errorLoading = 'Erro ao carregar lista de gasto';
-  static const String errorSaving = 'Erro ao salvar gasto';
-  static const String errorUpdating = 'Erro ao atualizar gasto';
+  static const String errorLoading = 'Erro ao carregar lista de dica';
+  static const String errorSaving = 'Erro ao salvar dica';
+  static const String errorUpdating = 'Erro ao atualizar dica';
 
-  static const String successLoading = 'Lista carregada com sucesso';
-  static const String successSaving = 'Gasto salvo com sucesso';
-  static const String successAdding = 'Gasto adicionado com sucesso';
-  static const String successUpdating = 'Gasto autalizado com sucesso';
-  static const String successDeleting = 'Gasto removido com sucesso';
+  static const String successLoading = 'Dicas carregada com sucesso';
+  static const String successSaving = 'Dica salva com sucesso';
+  static const String successAdding = 'Dica adicionada com sucesso';
+  static const String successUpdating = 'Dica atualizada com sucesso';
+  static const String successDeleting = 'Dica removida com sucesso';
 
   static const String password = 'Senha';
   static const String passwordConfirm = 'Confirme a senha';
@@ -29,35 +30,17 @@ class AppLabels {
   static const String toLogin = 'Já tem conta? Entre!';
 
 
-  static const String addExpense = 'Adicionar';
-  static const String updateExpense = 'Atualizar';
+  static const String addTips = 'Adicionar';
+  static const String updateTips = 'Atualizar';
 
-  static const String purpose = 'Finalidade';
-  static const String type = 'Tipo';
-  static const String amount = 'Valor';
-  static const String month = 'Mês';
-  static const String year = 'Ano';
-
-  static const List<String> monthsList = [
-    'Janeiro',
-    'Fevereiro',
-    'Março',
-    'Abril',
-    'Maio',
-    'Junho',
-    'Julho',
-    'Agosto',
-    'Setembro',
-    'Outubro',
-    'Novembro',
-    'Dezembro'
-  ];
+  static const String title = 'Título';
+  static const String type = 'Categoria';
+  static const String description = 'Descrição';
 
   static const List<String> typesList = [
-    'Fixo',
-    'Variável',
-    'Eventual',
-    'Ermegencial',
-    'Outro',
+    'Dica Geral',
+    'Sobre Organização',
+    'CleanCode / Refatoração',
+    'Resolução de Problema',
   ];
 }

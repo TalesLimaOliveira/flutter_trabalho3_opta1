@@ -51,18 +51,25 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                                       
                 //LOGO
                             Image.asset("assets/flutterlogo.png",
                               height: 200,
                             ),
+
                             const Text(
                               AppLabels.appName,
                               style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                               textAlign: TextAlign.center,
                             ),
+
+                            const Text(
+                              AppLabels.appSubName,
+                              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
+                            ),
+
                             const SizedBox(height: 30),
                 //FORMS
                 //USERNAME - SINGUP 
@@ -158,10 +165,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                       // TODO: CHANGE PASSWORD
                                       Navigator.push(
                                         context,
-                                        MaterialPageRoute(builder: (context) => const ExpenseList()),
+                                        MaterialPageRoute(builder: (context) => const TipsList()),
                                       );
                                     },
-                                    child: Text(AppLabels.forgotPassword),
+                                    child: const Text(AppLabels.forgotPassword),
                                   ),
                                 ),
                               ],
@@ -179,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   passwordConfirmController.clear();
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => const ExpenseList()),
+                                    MaterialPageRoute(builder: (context) => const TipsList()),
                                   );
                                 }
                               },
@@ -194,14 +201,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0),
                                 ),
-                                fixedSize: const Size(150, 50),
+                                fixedSize: const Size(165, 45),
                               ),
                               child: Text(isLogin ? AppLabels.enter : AppLabels.singup),
                             ),
                         
                             const SizedBox(height: 5),
-                            const Divider(),
-                            const SizedBox(height: 5),
+                            const Divider(color: AppColors.textButton),
+                            const SizedBox(height: 3),
                         
                 //BUTTON - SWITCH
                             TextButton(

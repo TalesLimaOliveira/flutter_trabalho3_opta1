@@ -11,8 +11,8 @@ export 'components/widgets/snackbar.dart';
 
 //screen
 export 'screens/home/home.dart';
-export 'screens/form/expense_form.dart';
-export 'screens/list/expense_list.dart';
+export 'screens/form/tips_form.dart';
+export 'screens/list/tips_list.dart';
 
-export 'models/expense_model.dart';
-export 'persistence/expense_dao.dart';
+export 'models/tips_model.dart';
+export 'persistence/tips_dao.dart';

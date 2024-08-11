@@ -5,26 +5,26 @@
 
 import 'package:flutter_trabalho3_opta1/commons.dart';
 
-class ExpenseDao extends ChangeNotifier {
+class TipsDao extends ChangeNotifier {
   static const String jsonKeyPreference = 'EXPENSE_LIST';
-  List<ExpenseModel> _expenseList = [];
-  List<ExpenseModel> get expenseList => _expenseList;
+  List<TipsModel> _tipsList = [];
+  List<TipsModel> get tipsList => _tipsList;
   int _idCounter = 0;
 
-  ExpenseDao() {
+  TipsDao() {
     // Initialize empty list, the loading will be done by the context (SCREEN/WIDGET).
   }
 
   // PERSISTENCE
-  Future<void> loadExpenses(BuildContext context) async {
+  Future<void> loadTipss(BuildContext context) async {
     try {
       final preference = await SharedPreferences.getInstance();
       final String? jsonString = preference.getString(jsonKeyPreference);
 
       if (jsonString != null && jsonString.isNotEmpty) {
         final List<dynamic> jsonList = json.decode(jsonString);
-        _expenseList = jsonList.map((jsonItem) => ExpenseModel.fromJson(jsonItem)).toList();
-        _idCounter = _expenseList.length;
+        _tipsList = jsonList.map((jsonItem) => TipsModel.fromJson(jsonItem)).toList();
+        _idCounter = _tipsList.length;
         notifyListeners();
         showSnackbar(context: context, label: AppLabels.successLoading, isError: false);
       }
@@ -33,10 +33,10 @@ class ExpenseDao extends ChangeNotifier {
     }
   }
 
-  Future<void> saveExpenses(BuildContext context) async {
+  Future<void> saveTipss(BuildContext context) async {
     try {
       final preference = await SharedPreferences.getInstance();
-      final String jsonString = jsonEncode(_expenseList.map((e) => e.toJson()).toList());
+      final String jsonString = jsonEncode(_tipsList.map((e) => e.toJson()).toList());
       await preference.setString(jsonKeyPreference, jsonString);
     } catch (e) {
       showSnackbar(context: context, label: AppLabels.errorSaving);
@@ -44,22 +44,22 @@ class ExpenseDao extends ChangeNotifier {
   }
 
   // METHODS
-  void addExpense(BuildContext context, ExpenseModel expense) {
-    expense.id = _idCounter;
-    _expenseList.add(expense);
+  void addTips(BuildContext context, TipsModel tips) {
+    tips.id = _idCounter;
+    _tipsList.add(tips);
     _idCounter++;
-    saveExpenses(context);
+    saveTipss(context);
     notifyListeners();
     showSnackbar(context: context, label: AppLabels.successAdding, isError: false);
   }
 
-  void updateExpense(BuildContext context, int id, ExpenseModel newExpense) async {
+  void updateTips(BuildContext context, int id, TipsModel newTips) async {
     try {
-      final index = _expenseList.indexWhere((expense) => expense.id == id);
+      final index = _tipsList.indexWhere((tips) => tips.id == id);
       if (index != -1) {
-        newExpense.id = id;
-        _expenseList[index] = newExpense;
-        await saveExpenses(context);
+        newTips.id = id;
+        _tipsList[index] = newTips;
+        await saveTipss(context);
         notifyListeners();
         showSnackbar(context: context, label: AppLabels.successUpdating, isError: false);
       } else {
@@ -70,25 +70,25 @@ class ExpenseDao extends ChangeNotifier {
     }
   }
 
-  void deleteExpense(BuildContext context, int id) {
-    _expenseList.removeWhere((expense) => expense.id == id);
-    saveExpenses(context);
+  void deleteTips(BuildContext context, int id) {
+    _tipsList.removeWhere((tips) => tips.id == id);
+    saveTipss(context);
     notifyListeners();
     showSnackbar(context: context, label: AppLabels.successDeleting, isError: false);
   }
 
-  static void addExpenseStatic(BuildContext context, ExpenseModel expense) {
-    final expenseDao = Provider.of<ExpenseDao>(context, listen: false);
-    expenseDao.addExpense(context, expense);
+  static void addTipsStatic(BuildContext context, TipsModel tips) {
+    final tipsDao = Provider.of<TipsDao>(context, listen: false);
+    tipsDao.addTips(context, tips);
   }
 
-  static void updateExpenseStatic(BuildContext context, int id, ExpenseModel newExpense) {
-    final expenseDao = Provider.of<ExpenseDao>(context, listen: false);
-    expenseDao.updateExpense(context, id, newExpense);
+  static void updateTipsStatic(BuildContext context, int id, TipsModel newTips) {
+    final tipsDao = Provider.of<TipsDao>(context, listen: false);
+    tipsDao.updateTips(context, id, newTips);
   }
 
-  static void deleteExpenseStatic(BuildContext context, int id) {
-    final expenseDao = Provider.of<ExpenseDao>(context, listen: false);
-    expenseDao.deleteExpense(context, id);
+  static void deleteTipsStatic(BuildContext context, int id) {
+    final tipsDao = Provider.of<TipsDao>(context, listen: false);
+    tipsDao.deleteTips(context, id);
   }
 }
