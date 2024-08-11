@@ -9,18 +9,22 @@ class ExpenseList extends StatefulWidget {
 }
 
 class _ExpenseListState extends State<ExpenseList> {
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<ExpenseDao>(context, listen: false).loadExpenses(context);
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppLabels.appBarList),
         automaticallyImplyLeading: false,
-        actions: [IconButton(
-          icon: const Icon(Icons.logout),
-          onPressed: (){
-            Navigator.pop(context);
-          },
-        )],
       ),
 
 //SCREEN STYLE
@@ -70,7 +74,7 @@ class _ExpenseListState extends State<ExpenseList> {
                               icon: const Icon(Icons.delete),
                               padding: EdgeInsets.zero,
                               onPressed: () {
-                                controller.deleteExpense(expenseList.id);
+                                controller.deleteExpense(context, expenseList.id);
                               },
                             ),
                           ],

@@ -7,20 +7,12 @@ showSnackbar({
 }){
   SnackBar snackBar = SnackBar(
     content: Text(label),
-    backgroundColor: (isError ? AppColors.error : AppColors.success),
+    backgroundColor: (isError ? AppColors.error : AppColors.secondary),
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(top: Radius.circular(8.0)),
     ),
-    duration: const Duration(seconds: 4),
+    duration: const Duration(seconds: 3),
     showCloseIcon: true,
-    
-    // action: SnackBarAction(
-    //   label: 'Ok',
-    //   textColor: AppColors.textButton,
-    //   onPressed: () {
-    //     ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    //   },
-    //  ),
   );
 
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
