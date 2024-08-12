@@ -7,6 +7,7 @@ class AppColors {
 
   static const Color background = Color.fromARGB(255, 255, 64, 129);
   static const Color containerBG = Color.fromARGB(255, 255, 255, 255);
+  static const Color cardBG = Color.fromARGB(255, 255, 210, 225);
   static const Color formBG = Color.fromARGB(255, 255, 255, 255);
 
   static const Color text = Color.fromARGB(255, 0, 0, 0);

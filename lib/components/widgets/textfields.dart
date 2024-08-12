@@ -38,6 +38,7 @@ Widget createTextFormField({
   String? Function(String?)? validator,
   Icon? icon,
   int maxLines = 1,
+  int? maxLength,
   bool obscureText = false,
 }) {
   return TextFormField(
@@ -45,6 +46,7 @@ Widget createTextFormField({
     keyboardType: textInputType,
     validator: validator,
     maxLines: maxLines,
+    maxLength: maxLength,
 
     obscureText: obscureText,
     decoration: getInputDecoration(hint: label, icon: icon),

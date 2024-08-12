@@ -58,7 +58,7 @@ class TipsModel {
   }
 
   String toSubtitle() {
-    return '→ Usuario: User\n• ${AppLabels.type}: $type\n• ${AppLabels.language}: $language';
+    return '@User\n• ${AppLabels.type}: $type\n• ${AppLabels.language}: $language';
   }
 
   String toDescription() {
