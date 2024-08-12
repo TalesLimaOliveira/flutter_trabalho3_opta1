@@ -26,7 +26,6 @@ class TipsDao extends ChangeNotifier {
         _tipsList = jsonList.map((jsonItem) => TipsModel.fromJson(jsonItem)).toList();
         _idCounter = _tipsList.length;
         notifyListeners();
-        showSnackbar(context: context, label: AppLabels.successLoading, isError: false);
       }
     } catch (e) {
       showSnackbar(context: context, label: AppLabels.errorLoading);

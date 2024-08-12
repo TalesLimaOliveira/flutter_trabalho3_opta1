@@ -7,7 +7,7 @@ class AppLabels {
 
   static const String valueError = 'Insira um valor valido';
   static const String errorLoading = 'Erro ao carregar lista de dica';
-  static const String errorSaving = 'Erro ao salvar dica';
+  static const String errorSaving = 'Erro ao salvar/deletar item';
   static const String errorUpdating = 'Erro ao atualizar dica';
 
   static const String successLoading = 'Dicas carregada com sucesso';
