@@ -1,5 +1,5 @@
 class AppLabels {
-  static const String appName = 'Programming Dicks';
+  static const String appName = 'Programming Tips';
   static const String appSubName = 'Dicas de Programação';
   static const String appBarList = 'Lista de Dicas';
   static const String appBarAdd = 'Adicionar Dica';
